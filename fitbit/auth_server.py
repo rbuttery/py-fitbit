@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-class OAuth2Server:
+class FitbitOAuth2Server:
     def __init__(self, client_id, client_secret,
                  redirect_uri='http://127.0.0.1:8080/'):
         """ Initialize the FitbitOauth2Client """
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     client_secret = os.getenv('FITBIT_CLIENT_SECRET')
     
     # Initialize the OAuth2Server
-    server = OAuth2Server(
+    server = FitbitOAuth2Server(
         client_id,
         client_secret
     )

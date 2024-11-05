@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # Load environment variables
 load_dotenv()
 
-class FitbitAPI:
+class FitbitClient:
     # ---------------------------------------------------------
     # Constants
     # ---------------------------------------------------------
@@ -89,13 +89,25 @@ class FitbitAPI:
         self.api_version = '1'
         self.api_url = 'https://api.fitbit.com'
         self.client_id = os.getenv('FITBIT_CLIENT_ID')
+        self.client_secret = os.getenv('FITBIT_CLIENT_SECRET')
         self.token_url = os.getenv('FITBIT_TOKEN_URL')
         self.token_data = self.__load_token()
         self.access_token = self.token_data['access_token']
 
     def __load_token(self):
-        with open('token.json', 'r') as file:
-            return json.load(file)
+        try:
+            with open('token.json', 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            try:
+                from fitbit.auth_server import FitbitOAuth2Server
+                server = FitbitOAuth2Server(self.client_id, self.client_secret)
+                server.browser_authorize()
+                self.token_data = server.fitbit.session.token
+                self.__save_token(self.token_data)
+                return self.token_data
+            except Exception as e:
+                print(f"Error loading token: {e}")
 
     def __save_token(self, token_data):
         with open('token.json', 'w') as file:
@@ -953,7 +965,7 @@ class FitbitAPI:
 
 
     
-fitbit = FitbitAPI()
+fitbit = FitbitClient()
 
 
 # TODO: 
