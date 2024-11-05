@@ -1,0 +1,5 @@
+Flask
+requests
+requests-oauthlib
+python-dotenv
+cherrypy
