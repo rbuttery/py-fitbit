@@ -3,3 +3,4 @@ requests
 requests-oauthlib
 python-dotenv
 cherrypy
+pandas
