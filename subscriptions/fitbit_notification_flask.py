@@ -1,10 +1,11 @@
 from flask import Flask, request
-
+import os
 app = Flask(__name__)
 
 # The endpoint for Fitbit notifications
 @app.route("/fitbit-notifications", methods=["GET", "POST"])
-def fitbit_notifications(verify_code):
+def fitbit_notifications():
+    verify_code = os.getenv('FITBIT_VERIFY_CODE')
     if request.method == "GET":
         # Fitbit will verify the endpoint with a GET request containing a "verify" query parameter
         verify_param = request.args.get("verify")
