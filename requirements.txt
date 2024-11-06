@@ -3,4 +3,8 @@ requests
 requests-oauthlib
 python-dotenv
 cherrypy
+
+# For data analysis
 pandas
+numpy
+matplotlib
