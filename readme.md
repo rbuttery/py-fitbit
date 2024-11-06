@@ -1,6 +1,17 @@
 # py-fitbit
 
-Python wrapper for the Fitbit API.
+### Python wrapper for the Fitbit API.
+
+### Note: This is not a complete library. It is missing a lot of endpoints and functionality.
+
+### TODO:
+- Client today is read-only. Need to add Create, Update, Delete (CRUD) endpoints for everything
+- Error handling
+- Logging
+- Tests
+- Documentation
+- Example notebooks
+- FITBIT_VERIFY_CODE in .env file is not automated yet - need to do this manually
 
 I created this based on a fork of the original [python-fitbit](https://github.com/orcasgit/python-fitbit) library which occupies `pip install fitbit`. However the library was not maintained, and futhermore is not something I want to maintain or support. So I made a new one, but did use some of the original code, expecially in the `auth` module.
 
@@ -11,17 +22,6 @@ Improvements:
 - Includes a Flask server for handling Fitbit webhook notifications. This is the "subscriptions" endpoint, that can send webhooks to any URL. 
     - This needs to be setup with Fitbit separately as well.
     - ** TODO: Provide a guide on how to do this
-
-## TODO:
-- Client today is read-only. Need to add Create, Update, Delete (CRUD) endpoints for everything
-- Error handling
-- Logging
-- Tests
-- Documentation
-- Example notebooks
-- FITBIT_VERIFY_CODE in .env file is not automated yet - need to do this manually
-
-## Also includes a Flask server for handling Fitbit webhook notifications.
 
 ### Windows Installation
 ```powershell
